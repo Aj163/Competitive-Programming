@@ -21,27 +21,25 @@ using namespace std;
 
 int main()
 {
-	int n, a[200009], ans=0, t;
-	int done[200009];
-
-	memset(done, 0, sizeof(done));
-	read(n);
-
-	F(i, 1, n+1, 1)
-		read(a[i]);
-
-	F_(i, n, 0, 1)
+	int a[6], sum=0;
+	f(i, 6)
 	{
-		t = i;
-		if(done[i] == 0)
-			ans++;
-		
-		while(done[t]==0 && t!=0)
-		{
-			done[t]=1;
-			t = a[t];
-		}
+		read(a[i]);
+		sum+=a[i];
 	}
 
-	printf("%d\n", ans);
+
+	f(i, 6)
+		f(j, 6)
+			f(k, 6)
+			{
+				int t1 = a[i]+a[j]+a[k];
+				if(i!=j && j!=k && i!=k && t1==sum-t1)
+				{
+					printf("YES\n");
+					return 0;
+				}
+			}
+
+	printf("NO\n");
 }

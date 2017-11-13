@@ -21,25 +21,21 @@ using namespace std;
 
 int main()
 {
-	int n, a[200009], ans=0, t;
+	int n, a[200009], ans;
 	int done[200009];
 
 	memset(done, 0, sizeof(done));
 	read(n);
-
-	F(i, 1, n+1, 1)
+	f(i, n)
 		read(a[i]);
 
-	F_(i, n, 0, 1)
+	ans = a[n-1];
+	F_(i, n-1, -1, 1)
 	{
-		t = i;
-		if(done[i] == 0)
-			ans++;
-		
-		while(done[t]==0 && t!=0)
+		if(done[a[i]] == 0)
 		{
-			done[t]=1;
-			t = a[t];
+			done[a[i]] = 1;
+			ans = a[i];
 		}
 	}
 
