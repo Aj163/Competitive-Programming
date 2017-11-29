@@ -71,7 +71,7 @@ ll query(int node, int a, int b, int i, int j)
 		return tree[node];
 
 	ll a1 = query(node*2, a, (a+b)/2, i, j);
-	ll a2 = query(node*2 +1, (a+b)/2, b, i, j);
+	ll a2 = query(node*2 +1, (a+b)/2 +1, b, i, j);
 	return min(a1, a2);
 }
 
