@@ -21,5 +21,25 @@ using namespace std;
 
 int main()
 {
+	char s[109];
+	int l, pre[109], suf[109];
+	ll ans = 0;
 
+	reads(s);
+	l = strlen(s);
+
+	pre[0] = (s[0] == 'Q');
+	suf[l-1] = (s[l-1] == 'Q');
+
+	F(i, 1, l, 1)
+		pre[i] = pre[i-1] + (s[i] == 'Q');
+
+	F_(i, l-2, -1, 1)
+		suf[i] = suf[i+1] + (s[i] == 'Q');
+
+	f(i, l)
+		if(s[i] == 'A')
+			ans += pre[i]*suf[i];
+
+	cout<<ans<<endl;
 }

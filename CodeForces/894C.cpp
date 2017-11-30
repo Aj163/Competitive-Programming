@@ -21,5 +21,23 @@ using namespace std;
 
 int main()
 {
+	int n, t=0;
+	int a[1009];
 
+	read(n);
+	f(i, n)
+	{
+		read(a[i]);
+		t = __gcd(t, a[i]);
+	}
+
+	if(t!=a[0])
+	{
+		printf("-1\n");
+		return 0;
+	}
+
+	printf("%d\n", 2*n);
+	f(i, n)
+		printf("%d %d ", a[i], t);
 }
