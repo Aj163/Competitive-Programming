@@ -21,5 +21,33 @@ using namespace std;
 
 int main()
 {
-	
+	int n, t, ans=0;
+	int p2[1<<20], cnt[1<<20];
+	memset(cnt, 0, sizeof(cnt));
+
+	read(n);
+	f(i, n)
+	{
+		read(t);
+		cnt[t]++;
+	}
+
+	p2[0] = 1;
+	F(i, 1, (1<<20), 1)
+		p2[i] = (p2[i-1]*2)%M;
+
+	f(i, 20)
+		F_(j, (1<<20)-1, -1, 1)
+			if((j&(1<<i)) == 0)
+				cnt[j] += cnt[j | (1<<i)];
+
+	f(i, (1<<20))
+	{
+		if(__builtin_popcount(i)&1)
+			ans = (ans-p2[cnt[i]] +M)%M;
+		else
+			ans = (ans+p2[cnt[i]])%M;
+	}
+
+	printf("%d\n", ans);
 }
