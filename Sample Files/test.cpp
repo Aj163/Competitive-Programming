@@ -1,27 +1,32 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<math.h>
 using namespace std;
+int main(){
 
-#define f(i, num) for(int i=0; i<num; i++)
-#define F(i, lower, upper, step) for(int i=lower; i<upper; i+=step)
-#define F_(i, upper, lower, step) for(int i=upper; i>lower; i-=step)
+int t,n,q,l,r,m;
+cin>>t;
+for(int i=0;i<t;++i)
+{int arr[100000];
+ cin>>n>>q;
+ for(int j=0;j<n;++j){
+  cin>>arr[j];
 
-#define read(num) scanf("%d", &num)
-#define read2(num1, num2) scanf("%d%d", &num1, &num2)
-#define read3(num1, num2, num3) scanf("%d%d%d", &num1, &num2, &num3)
-#define reads(str) scanf("%s", str)
-#define readc(ch) scanf("%c", &ch)
 
-#define M 1000000007
-#define pb push_back
-#define mp make_pair
+ }
+ for(int k=0;k<q;++k)  {
+ cin>>l>>r;
+m=0;
+  for(int p=l-1;p<r-1;++p)
+  {
+      if(p==l-1)
+       m=arr[p]^arr[p+1];
+     else
+       m=m^arr[p+1];
 
-#define pii pair<int, int>
-#define vi vector<int>
-#define ll long long
+  }
+cout<<m<<endl;
+ }
 
-int main()
-{
-	ll a = 1e9, b = 1e9;
-
-	cout<<a*1ll*b;		
+}
+return 0;
 }
