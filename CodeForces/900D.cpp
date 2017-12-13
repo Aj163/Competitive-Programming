@@ -20,35 +20,64 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int power(int a, int n)
+{
+	if(n==0)
+		return 1;
+	if(n%2)
+		return (a * 1ll * power((a*1ll*a)%M, (n-1)/2))%M;
+	return power((a*1ll*a)%M, n/2);
+}
+
 int main()
 {
-	int n, a;
-	ll sum;
-	double ans = 0;
-	map<int, int> m;
+	int x, y, k, l, n, ans = 0, t1, t2;
+	vi v;
 
-	read(n);
-	read(a);
+	read2(x, y);
 
-	sum = a;
-	m[a] = 1;
-
-	f(i, n-1)
+	if(y%x != 0)
 	{
-		read(a);
-
-		ans += (i+1)*(double)1.0*a - sum;
-		if(m.find(a-1) != m.end())
-			ans -= m[a-1];
-		if(m.find(a+1) != m.end())
-			ans += m[a+1];
-
-		sum += a;
-		if(m.find(a) != m.end())
-			m[a]++;
-		else
-			m[a] = 1;
+		printf("0\n");
+		return 0;
 	}
 
-	printf("%.0lf\n", ans);
+	k = y/x;
+	x = 2;
+	n = k;
+
+	while(k!=1)
+	{
+		y = 0;
+		while(k%x == 0)
+		{
+			k/=x;
+			y=1;
+		}
+
+		if(y)
+			v.pb(x);
+
+		x++;
+	}
+
+	l = v.size();
+	f(i, (1<<l))
+	{
+		t1 = 0;
+		t2 = 1;
+		f(j, l)
+			if(i & (1<<j))
+			{
+				t1++;
+				t2 *= v[j];
+			}
+
+		if(t1%2)
+			ans = (ans + power(2, n/t2 -1)*(-1) +M)%M;
+		else
+			ans = (ans + power(2, n/t2 -1))%M;
+	}
+
+	printf("%d\n", ans);
 }

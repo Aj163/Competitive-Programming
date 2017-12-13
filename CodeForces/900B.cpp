@@ -22,33 +22,31 @@ using namespace std;
 
 int main()
 {
-	int n, a;
-	ll sum;
-	double ans = 0;
-	map<int, int> m;
+	int a, b, c, div, pos = 0;
+	int oc[100009];
 
-	read(n);
-	read(a);
+	memset(oc, 0, sizeof(oc));
+	read3(a, b, c);
+	a%=b;
 
-	sum = a;
-	m[a] = 1;
-
-	f(i, n-1)
+	while(1)
 	{
-		read(a);
+		a*=10;
+		div = a/b;
+		a = a%b;
+		pos++;
 
-		ans += (i+1)*(double)1.0*a - sum;
-		if(m.find(a-1) != m.end())
-			ans -= m[a-1];
-		if(m.find(a+1) != m.end())
-			ans += m[a+1];
+		if(div == c)
+			break;
 
-		sum += a;
-		if(m.find(a) != m.end())
-			m[a]++;
+		if(oc[a] == 1)
+		{
+			pos = -1;
+			break;
+		}
 		else
-			m[a] = 1;
+			oc[a] = 1;
 	}
 
-	printf("%.0lf\n", ans);
+	printf("%d\n", pos);
 }

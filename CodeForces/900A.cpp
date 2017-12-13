@@ -22,33 +22,20 @@ using namespace std;
 
 int main()
 {
-	int n, a;
-	ll sum;
-	double ans = 0;
-	map<int, int> m;
+	int n, x, y, cl = 0, cr = 0;
 
 	read(n);
-	read(a);
-
-	sum = a;
-	m[a] = 1;
-
-	f(i, n-1)
+	f(i, n)
 	{
-		read(a);
-
-		ans += (i+1)*(double)1.0*a - sum;
-		if(m.find(a-1) != m.end())
-			ans -= m[a-1];
-		if(m.find(a+1) != m.end())
-			ans += m[a+1];
-
-		sum += a;
-		if(m.find(a) != m.end())
-			m[a]++;
+		read2(x, y);
+		if(x>0)
+			cr++;
 		else
-			m[a] = 1;
+			cl++;
 	}
 
-	printf("%.0lf\n", ans);
+	if(cr<=1 || cl<=1)
+		printf("Yes\n");
+	else
+		printf("No\n");
 }
