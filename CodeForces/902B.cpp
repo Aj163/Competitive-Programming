@@ -20,7 +20,35 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int n, ans = 1;
+vi v[10009];
+int col[10009];
+
+void dfs(int x, int p, int c)
+{
+	if(col[x] != c)
+		ans++;
+
+	f(i, v[x].size())
+		if(v[x][i] != p)
+			dfs(v[x][i], x, col[x]);
+}
+
 int main()
 {
+	int a;
 
+	read(n);
+	F(i, 2, n+1, 1)
+	{
+		read(a);
+		v[a].pb(i);
+		v[i].pb(a);
+	}
+
+	f1(i, n)
+		read(col[i]);
+
+	dfs(1, -1, col[1]);
+	printf("%d\n", ans);
 }

@@ -20,7 +20,36 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int n, m;
+pii p[109];
+
 int main()
 {
+	int a, b;
+	read2(n, m);
+	f(i, n)
+	{
+		read2(a, b);
+		p[i] = mp(a, b);
+	}
 
+	int flag = 1, temp = 0;
+	if(p[0].first != 0)
+		flag = 0;
+
+	temp = p[0].second;
+	F(i, 1, n, 1)
+	{
+		if(temp<p[i].first)
+		{
+			flag = 0;
+			break;
+		}
+		temp = max(temp, p[i].second);
+	}
+
+	if(temp == m && flag)
+		printf("YES\n");
+	else
+		printf("NO\n");
 }

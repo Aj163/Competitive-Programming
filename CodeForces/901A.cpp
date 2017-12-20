@@ -22,5 +22,54 @@ using namespace std;
 
 int main()
 {
+	int h, t = 1;
+	int a[200009];
 
+	read(h);
+	f(i, h+1)
+		read(a[i]);
+
+	int flag = 1;
+	f(i, h)
+		if(a[i]>1 && a[i+1]>1)
+		{
+			flag = 0;
+			break;
+		}
+
+	if(flag)
+	{
+		printf("perfect\n");
+		return 0;
+	}
+
+	printf("ambiguous\n0 ");
+	f1(i, h)
+	{
+		if(a[i]>1 && a[i-1]>1)
+		{
+			f(j, a[i]-1)
+				printf("%d ", t);
+			printf("%d ", t-1);
+
+			t += a[i];
+		}
+		else
+		{
+			f(j, a[i])
+				printf("%d ", t);
+
+			t += a[i];
+		}
+	}
+
+	printf("\n0 ");
+	t = 1;
+	f1(i, h)
+	{
+		f(j, a[i])
+			printf("%d ", t);
+
+		t += a[i];
+	}
 }
