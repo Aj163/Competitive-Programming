@@ -13,6 +13,7 @@ using namespace std;
 #define readc(ch) scanf("%c", &ch)
 
 #define M 1000000007
+#define INF ((int)2e9)
 #define pb push_back
 #define mp make_pair
 
