@@ -21,7 +21,40 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int l;
+int dp[100009][2];
+char str[100009];
+
+int solve(int i, int type)
+{
+	if(i==l)
+		return 0;
+	if(dp[i][type] != -1)
+		return dp[i][type];
+
+	int ret;
+	if(type == 1)
+	{
+		ret = solve(i+1, 1);
+		if(str[i] < 'a')
+			ret++;
+	}
+	else
+	{
+		if(str[i]<'a')
+			ret = solve(i+1, 0);
+		else
+			ret = min(solve(i+1, 1), solve(i+1, 0)+1);
+	}
+
+	return dp[i][type] = ret;
+}
+
 int main()
 {
-	
+	reads(str);
+	l = strlen(str);
+	memset(dp, -1, sizeof(dp));
+
+	printf("%d\n", solve(0, 0));
 }

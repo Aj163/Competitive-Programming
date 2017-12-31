@@ -23,5 +23,21 @@ using namespace std;
 
 int main()
 {
-	
+	int a, b, c, d, flag = 0;
+
+	read2(a, b);
+	read2(c, d);
+
+	F(i, 1, 201, 1)
+		F(j, 1, i, 1)
+			F(k, 1, j, 1)
+			{
+				if(a<=i && b<=j && c<=k && d<=i && d<=j && d<=k && 2*d>=k && 2*d<j && 2*a>=i && 2*b>=j && 2*c>=k)
+				{
+					printf("%d\n%d\n%d\n", i, j, k);
+					return 0;
+				}
+			}
+
+	printf("-1\n");
 }
