@@ -21,42 +21,39 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
-int n, k;
-pii p[210];
-map< pii, int > dp[210][210];
-
-int solve(int i, int c, int p2, int p5)
-{
-	if(c==k)
-		return min(p2, p5);
-	if(i==n)
-		return -1e9;
-
-	if(dp[i][c].find(mp(p2, p5)) != dp[i][c].end())
-		return dp[i][c][mp(p2, p5)];
-
-	int a = solve(i+1, c+1, p2+p[i].first, p5+p[i].second);
-	int b = solve(i+1, c, p2, p5);
-
-	return dp[i][c][mp(p2, p5)] = max(a, b);
-}
-
 int main()
 {
-	ll a;
+	int t, n;
+	int cnt[7];
+	char s[10];
 
-	cin>>n>>k;
-	f(i, n)
+	map<string, int> m;
+
+	m["mon"] = 1;
+	m["tues"] = 2;
+	m["wed"] = 3;
+	m["thurs"] = 4;
+	m["fri"] = 5;
+	m["sat"] = 6;
+	m["sun"] = 0;
+
+	read(t);
+	f(z, t)
 	{
-		cin>>a;
-		p[i] = mp(0, 0);
-		while(a%2==0)
-			p[i].first++, a/=2;
-		while(a%5==0)
-			p[i].second++, a/=5;
+		read(n);
+		reads(s);
 
-		//cout<<p[i].first<<" "<<p[i].second<<endl;
+		memset(cnt, 0,sizeof(cnt));
+
+		int day = m[s];
+		f(i, n)
+		{
+			cnt[day]++;
+			day = (day+1)%7;
+		}
+
+		f(i, 6)
+			printf("%d ", cnt[i+1]);
+		printf("%d\n", cnt[0]);
 	}
-
-	cout<<solve(0, 0, 0, 0);;
 }

@@ -21,42 +21,57 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
-int n, k;
-pii p[210];
-map< pii, int > dp[210][210];
-
-int solve(int i, int c, int p2, int p5)
+int getval(int a)
 {
-	if(c==k)
-		return min(p2, p5);
-	if(i==n)
-		return -1e9;
+	if(a<10)
+		return a;
+	int ret = 0;
+	while(a)
+	{
+		ret += a%10;
+		a/=10;
+	}
 
-	if(dp[i][c].find(mp(p2, p5)) != dp[i][c].end())
-		return dp[i][c][mp(p2, p5)];
+	return getval(ret);
+}
 
-	int a = solve(i+1, c+1, p2+p[i].first, p5+p[i].second);
-	int b = solve(i+1, c, p2, p5);
+int solve(ll a, ll b)
+{
+	if(a == 0)
+		return 0;
 
-	return dp[i][c][mp(p2, p5)] = max(a, b);
+	ll t = b;
+	int p;
+	int ret = 0;
+
+	while(t)
+	{
+		p = t%10;
+		ret += getval((a%10)*p);
+		t/=10;
+	}
+
+	return getval(getval(ret) + solve(a/10, b));
+}
+
+int power(ll a, ll b)
+{
+	if(b == 1)
+		return getval(a);
+	if(b%2)
+		return solve(a, power(solve(a, a), (b-1)/2));
+	return power(solve(a, a), b/2);
 }
 
 int main()
 {
-	ll a;
+	int t;
+	ll a, b;
 
-	cin>>n>>k;
-	f(i, n)
+	read(t);
+	f(z, t)
 	{
-		cin>>a;
-		p[i] = mp(0, 0);
-		while(a%2==0)
-			p[i].first++, a/=2;
-		while(a%5==0)
-			p[i].second++, a/=5;
-
-		//cout<<p[i].first<<" "<<p[i].second<<endl;
+		scanf("%lld%lld", &a, &b);
+		printf("%d\n", power(a, b));
 	}
-
-	cout<<solve(0, 0, 0, 0);;
 }
