@@ -21,7 +21,45 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int n, turn = 0;
+int a[5009];
+ll dp[2][5009], sorts[5009], mindp[5009];
+
 int main()
 {
-    
+	read(n);
+	f(i, n)
+	{
+		read(a[i]);
+		sorts[i] = a[i];
+	}
+
+	sort(sorts, sorts+n);
+	f(i, 5009)
+	{
+		mindp[i] = 0;
+		dp[turn][i] = 0;
+	}
+
+	f(k, n)
+	{
+		turn = 1-turn;
+		f(i, 5009)
+			dp[turn][i] = 0;
+
+		f(i, n)
+		{
+			dp[turn][i] = mindp[i] + abs(a[k] - sorts[i]);
+			if(i==0)
+				mindp[i] = dp[turn][0];
+			else
+				mindp[i] = min(mindp[i-1], dp[turn][i]);
+		}
+	}
+
+	ll ans = 1e18;
+	f(i, n)
+		ans = min(ans, dp[turn][i]);
+
+	cout<<ans<<endl;
 }

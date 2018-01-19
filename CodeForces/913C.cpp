@@ -20,8 +20,42 @@ using namespace std;
 #define pii pair<int, int>
 #define vi vector<int>
 #define ll long long
+ll c[39];
+ll answer(ll l, int n)
+{
+	ll ans = 0;
+
+	F_(i, n-1, -1, 1)
+	{
+		ans += c[i]*(l/(1ll<<i));
+		l -= (1ll<<i)*(l/(1ll<<i));
+	}
+
+	return ans;
+}
 
 int main()
 {
-    
+	ll n, l;
+	
+	ll ans = 2e18;
+
+	cin>>n>>l;
+	f(i, n)
+	{
+		cin>>c[i];
+		if(i!=0)
+			c[i] = min(c[i], c[i-1]*2);
+	}
+
+	ans = min(ans, answer(l, n));
+	while(l <= (1ll<<30))
+	{
+		l += (l&(-l));
+		ans = min(ans, answer(l, n));
+
+		//printf("%lld -> %lld\n", l, answer(l, n));
+	}
+
+	cout<<ans<<endl;
 }

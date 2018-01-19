@@ -21,7 +21,49 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int dp[1009][1009], ch[1009][1009];
+pii step[1009][1009];
+
+int solve(int n, int k)
+{
+	if(n==0)
+		return 0;
+
+	if(dp[n][k] != -1)
+		return dp[n][k];
+
+	int ret = -1, choice;
+	pii st;
+	F(i, 1, min(n, k-1)+1, 1)
+	{
+		if(solve(n-i, i) +1 > ret)
+		{
+			ret = solve(n-i, i) +1;
+			choice = i;
+			st = mp(n-i, i);
+		}
+	}
+
+	ch[n][k] = choice;
+	step[n][k] = st;
+	return dp[n][k] = ret;
+}
+
 int main()
 {
-    
+	int n;
+	read(n);
+
+	memset(dp, -1, sizeof(dp));
+	f(i, 1009)
+		f(j, 1009)
+			step[i][j] = mp(-1, -1);
+	printf("%d\n", solve(n, 1008));
+
+	pii st = mp(n, 1008);
+	while(ch[st.first][st.second] != 0)
+	{
+		printf("%d ", ch[st.first][st.second]);
+		st = step[st.first][st.second];
+	}
 }

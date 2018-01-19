@@ -19,9 +19,19 @@ using namespace std;
 
 #define pii pair<int, int>
 #define vi vector<int>
-#define ll long long
+#define ll long long	
 
 int main()
 {
-    
+	int n, k, a, ans = 1e9;
+
+	read2(n, k);
+	f(i, n)
+	{
+		read(a);
+		if(k%a == 0)
+			ans = min(ans, k/a);
+	}
+
+	printf("%d\n", ans);
 }

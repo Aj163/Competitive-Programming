@@ -23,5 +23,19 @@ using namespace std;
 
 int main()
 {
-    
+	int a, b, x, y, z;
+	ll ans = 0, ansa=0, ansb=0;
+
+	read2(a, b);
+	read3(x, y, z);
+
+	ansa = 2*1ll*x + 1ll*y;
+	ansb = 1ll*y + 3*1ll*z;
+
+	if(ansa>a)
+		ans+=ansa-a;
+	if(ansb>b)
+		ans+=ansb-b;
+
+	cout<<ans<<endl;
 }

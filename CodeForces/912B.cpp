@@ -21,7 +21,22 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+ll hp(ll n)
+{
+	ll p = 1;
+	while(p<=n)
+		p*=2;
+
+	return p-1;
+}
+
 int main()
 {
-    
+	ll n, k;
+
+	cin>>n>>k;
+	if(k==1)
+		cout<<n;
+	else
+		cout<<hp(n);
 }

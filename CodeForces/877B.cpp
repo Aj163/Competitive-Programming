@@ -21,7 +21,31 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+char s[5009];
+int dp[5009][3], n;
+
+int solve(int i, int type)
+{
+	if(i==n)
+		return 0;
+
+	if(dp[i][type] != -1)
+		return dp[i][type];
+
+	if(type == 2)
+		return dp[i][type] = solve(i+1, 2) + (s[i] != 'a');
+
+	if(type == 1)
+		return dp[i][type] = min(solve(i+1, 1) + (s[i] != 'b'), solve(i+1, 2));
+	
+	return dp[i][type] = min(solve(i+1, 0) + (s[i] != 'a'), solve(i+1, 1));
+}
+
 int main()
 {
-    
+	reads(s);
+	n = strlen(s);
+	memset(dp, -1, sizeof(dp));
+
+	printf("%d\n", n-solve(0, 0));
 }

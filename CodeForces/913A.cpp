@@ -23,5 +23,11 @@ using namespace std;
 
 int main()
 {
-    
+	int n, m;
+
+	read2(n, m);
+	if(n>29)
+		printf("%d\n", m);
+	else
+		printf("%d\n", m%(1<<n));
 }
