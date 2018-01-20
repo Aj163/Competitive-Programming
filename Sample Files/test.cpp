@@ -1,27 +1,93 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <map>
+#include <cctype>
+#include <cmath>
+#include <utility>
+#include <queue>
+#include <cassert>
+#include <set>
+#include <fstream>
+
+#define N 100009
+
 using namespace std;
 
-#define f(i, num) for(int i=0; i<num; i++) //0 - based indexing
-#define f1(i, num) for(int i=1; i<=num; i++) //1 - based indexing
-#define F(i, lower, upper, step) for(int i=lower; i<upper; i+=step)
-#define F_(i, upper, lower, step) for(int i=upper; i>lower; i-=step)
+set< pair<int,int> > lol;
+vector<int> final;
 
-#define read(num) scanf("%d", &num)
-#define read2(num1, num2) scanf("%d%d", &num1, &num2)
-#define read3(num1, num2, num3) scanf("%d%d%d", &num1, &num2, &num3)
-#define reads(str) scanf("%s", str)
-#define readc(ch) scanf("%c", &ch)
-
-#define M 1000000007
-#define INF ((int)2e9)
-#define pb push_back
-#define mp make_pair
-
-#define pii pair<int, int>
-#define vi vector<int>
-#define ll long long
-
-int main()
-{
-    
+int main(){
+	int i,j,t1,t2,t3,t4,k,siz;
+	long long int n,buf1,buf2,buf3;
+	scanf("%lld %d",&n,&k);
+	for(i=0;i<60;i++){
+		buf1=1ll<<i;
+		if(buf1&n){
+			lol.insert(make_pair(i,1));
+		}
+	}
+	t1=(int)lol.size();
+	if(t1>k){
+		printf("No\n");
+		return 0;
+	}
+	siz=t1;
+	while(1){
+		if(siz==k){
+			break;
+		}
+		auto it=lol.end();
+		it--;
+		if(it->second==0){
+			lol.erase(it);
+			continue ;
+		}
+		if(it==lol.begin()){
+			t1=it->first;
+			t2=it->second;
+			lol.erase(lol.find(make_pair(t1,t2)));
+			lol.insert(make_pair(t1-1,2));
+			t2--;
+			lol.insert(make_pair(t1,t2));
+		}
+		else{
+			auto it2=it;
+			it2--;
+			t1=it->first;
+			t2=it->second;
+			t3=it2->first;
+			t4=it2->second;
+			lol.erase(lol.find(make_pair(t1,t2)));
+			if(t3+1==t1){
+				lol.erase(lol.find(make_pair(t3,t4)));
+				t4+=2;
+				lol.insert(make_pair(t3,t4));
+			}
+			else{
+				lol.insert(make_pair(t1-1,2));
+			}
+			t2--;
+			lol.insert(make_pair(t1,t2));
+		}
+		siz++;
+	}
+	printf("Yes\n");
+	for(auto it : lol){
+		t1=it.first;
+		t2=it.second;
+		for(i=0;i<t2;i++){
+			final.push_back(t1);
+		}
+	}
+	reverse(final.begin(),final.end());
+	for(auto it : final){
+		printf("%d ",it);
+	}
+	printf("\n");
+    return 0;
 }
