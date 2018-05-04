@@ -3,11 +3,11 @@ int fact[maxn];
 
 int power(int a, int n, int m = 1000000007)
 {
-	if(n==0)
-		return 1;
-	if(n%2)
-		return (a*1ll*power((a*1ll*a)%m, (n-1)/2))%m;
-	return power((a*1ll*a)%m, n/2);
+    if(n==0)
+        return 1;
+    if(n%2)
+        return (a*1ll*power((a*1ll*a)%m, (n-1)/2, m))%m;
+    return power((a*1ll*a)%m, n/2, m);
 }
 
 void facts(int m = 1000000007)
