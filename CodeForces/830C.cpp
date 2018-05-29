@@ -18,6 +18,34 @@ using namespace std;
 
 int main()
 {
-	int n;
-	
+	int n, a[109];
+	set<int> s;
+	ll k;
+
+	read(n);
+	readll(k);
+	for(int i=0; i<n; i++)
+	{
+		read(a[i]);
+		k += a[i];
+
+		for(int j=1; j*j<=a[i]; j++)
+		{
+			s.insert(j);
+			s.insert(ceil(a[i]*1.0/j));
+		}
+	}
+
+	ll ans = 1;
+	for(auto it : s)
+	{
+		ll sum = 0;
+		for(int i=0; i<n; i++)
+			sum += ceil(a[i]*1.0/it);
+
+		if(it <= k/sum)
+			ans = max(ans, k/sum);
+	}
+
+	printf("%lld\n", ans);
 }

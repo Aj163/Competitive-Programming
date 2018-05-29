@@ -18,6 +18,29 @@ using namespace std;
 
 int main()
 {
-	int n;
-	
+	const int N = 3e8+9;
+	int l, r;
+	bitset<N> b;
+
+	read2(l, r);
+	b.set();
+
+	for(int i=3; i*i<=r; i+=2)
+		if(b[i])
+		{
+			for(int j=i*i; j<=r; j+=i)
+				b[j] = 0;
+		}
+
+	int ans = 0;
+	if(l<=2 && 2<=r)
+		ans++;
+
+	int k = 4*ceil((l-1)*1.0/4) +1;
+	k = max(k, 5);
+	for(; k<=r; k+=4)
+		if(b[k])
+			ans++;
+
+	printf("%d\n", ans);
 }
