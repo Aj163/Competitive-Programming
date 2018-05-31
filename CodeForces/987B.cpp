@@ -18,5 +18,17 @@ using namespace std;
 
 int main()
 {
-	
+	int x, y;
+
+	read2(x, y);
+	if(x == y || (x==2 && y==4) || (x==4 && y==2))
+	{
+		printf("=\n");
+		return 0;
+	}
+
+	if(x*1.0*log(y) < y*1.0*log(x))
+		printf(">\n");
+	else
+		printf("<\n");
 }

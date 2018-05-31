@@ -18,5 +18,26 @@ using namespace std;
 
 int main()
 {
-	
+	int n, cnt=6;
+	map<string, string> m;
+	read(n);
+	string s;
+
+	m["purple"] = "Power\n";
+	m["green"] = "Time\n";
+	m["blue"] = "Space\n";
+	m["orange"] = "Soul\n";
+	m["red"] = "Reality\n";
+	m["yellow"] = "Mind\n";
+
+	for(int i=0; i<n; i++)
+	{
+		cin>>s;
+		m[s] = "";
+		cnt--;
+	}
+
+	printf("%d\n", cnt);
+	for(auto it : m)
+		cout<<it.second;
 }
