@@ -18,11 +18,18 @@ using namespace std;
 
 int main()
 {
-	char s[1009];
+	int n, t;
+	double p;
+	double dp[2009][2009];
+	cin>>n>>p>>t;
+	
+	for(int j=1; j<2009; j++)
+		for(int i=1; i<2009; i++)
+			dp[i][j] = 0.0;;
 
-	cin>>s;
-	if(strstr(s, "ABC") || strstr(s, "ACB") || strstr(s, "BAC") || strstr(s, "BCA") || strstr(s, "CAB") || strstr(s, "CBA"))
-		printf("Yes\n");
-	else
-		printf("No\n");
+	for(int j=1; j<2009; j++)
+		for(int i=1; i<2009; i++)
+			dp[i][j] = (1-p)*dp[i][j-1]  +  p*dp[i-1][j-1] + p;
+
+	printf("%0.9lf\n", dp[n][t]);
 }

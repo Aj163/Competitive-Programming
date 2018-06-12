@@ -18,11 +18,27 @@ using namespace std;
 
 int main()
 {
-	char s[1009];
+	int t;
+	ll a, b, c;
 
-	cin>>s;
-	if(strstr(s, "ABC") || strstr(s, "ACB") || strstr(s, "BAC") || strstr(s, "BCA") || strstr(s, "CAB") || strstr(s, "CBA"))
-		printf("Yes\n");
-	else
-		printf("No\n");
+	read(t);
+	while(t--)
+	{
+		scanf("%lld%lld%lld", &a, &b, &c);
+		b/=__gcd(a, b);
+
+		while(1)
+		{
+			ll x = __gcd(b, c);
+			if(x==1)
+				break;
+			b/=x;
+			c = x;
+		}
+
+		if(b==1)
+			printf("Finite\n");
+		else
+			printf("Infinite\n");
+	}
 }

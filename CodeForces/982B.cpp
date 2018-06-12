@@ -18,11 +18,37 @@ using namespace std;
 
 int main()
 {
-	char s[1009];
+	int n, a;
+	char s[400009];
+	set<pii> s1, s2;
+	set<pii>::iterator it;
+	pii p;
 
-	cin>>s;
-	if(strstr(s, "ABC") || strstr(s, "ACB") || strstr(s, "BAC") || strstr(s, "BCA") || strstr(s, "CAB") || strstr(s, "CBA"))
-		printf("Yes\n");
-	else
-		printf("No\n");
+	read(n);
+	for(int i=0; i<n; i++)
+	{
+		read(a);
+		s1.insert(mp(a, i+1));
+	}
+
+	reads(s);
+	for(int i=0; i<2*n; i++)
+	{
+		if(s[i]=='0')
+		{
+			p = *s1.begin();
+			s1.erase(s1.begin());
+			s2.insert(p);
+			printf("%d ", p.second);
+		}
+		else
+		{
+			it = s2.end();
+			it--;
+			p = *it;
+			s2.erase(it);
+			printf("%d ", p.second);
+		}
+	}
+	printf("\n");
 }

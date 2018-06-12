@@ -19,10 +19,18 @@ using namespace std;
 int main()
 {
 	char s[1009];
+	int l, cnt = 0;
 
-	cin>>s;
-	if(strstr(s, "ABC") || strstr(s, "ACB") || strstr(s, "BAC") || strstr(s, "BCA") || strstr(s, "CAB") || strstr(s, "CBA"))
-		printf("Yes\n");
+	reads(s);
+	l = strlen(s);
+	for(int i=0; i<l; i++)
+		if(s[i] == '-')
+			cnt++;
+
+	if(l == cnt)
+		printf("YES\n");
+	else if(cnt%(l-cnt) == 0)
+		printf("YES\n");
 	else
-		printf("No\n");
+		printf("NO\n");
 }

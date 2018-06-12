@@ -16,13 +16,37 @@ using namespace std;
 #define vi vector<int>
 #define ll long long
 
+int n, x, y, ans=0;
+vi v[100009];
+
+int dfs(int e, int p)
+{
+	int ret = 0;
+	for(int i=0; i<v[e].size(); i++)
+		if(v[e][i] != p)
+		{
+			int temp = dfs(v[e][i], e);
+			ret += temp;
+			if(temp%2 == 0)
+				ans++;
+		}
+
+	return ret +1;
+}
+
 int main()
 {
-	char s[1009];
+	read(n);
+	for(int i=0; i<n-1; i++)
+	{
+		read2(x, y);
+		v[x].pb(y);
+		v[y].pb(x);
+	}
 
-	cin>>s;
-	if(strstr(s, "ABC") || strstr(s, "ACB") || strstr(s, "BAC") || strstr(s, "BCA") || strstr(s, "CAB") || strstr(s, "CBA"))
-		printf("Yes\n");
+	dfs(1, 0);
+	if(n%2==1)
+		printf("-1\n");
 	else
-		printf("No\n");
+		printf("%d\n", ans);
 }
