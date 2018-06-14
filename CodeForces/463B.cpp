@@ -18,5 +18,25 @@ using namespace std;
 
 int main()
 {
-	
+	int n, ans=0, en;
+	int a[100009];
+
+	read(n);
+	for(int i=0; i<n; i++)
+		read(a[i]);
+
+	en = 0;
+	ans = a[0];
+	for(int i=1; i<n; i++)
+	{
+		if(a[i] - a[i-1] <= en)
+			en -= a[i] - a[i-1];
+		else
+		{
+			ans += (a[i] - a[i-1]) - en;
+			en = 0;
+		}
+	}
+
+	printf("%d\n", ans);
 }

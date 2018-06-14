@@ -18,5 +18,22 @@ using namespace std;
 
 int main()
 {
-	
+	int n, p, a;
+	bool d[309], flag=1;
+
+	memset(d, 0, sizeof(d));
+	read2(p, n);
+	for(int i=0; i<n; i++)
+	{
+		read(a);
+		if(d[a%p] && flag)
+		{
+			printf("%d\n", i+1);
+			flag=0;
+		}
+		d[a%p] = 1;
+	}
+
+	if(flag)
+		printf("-1\n");
 }

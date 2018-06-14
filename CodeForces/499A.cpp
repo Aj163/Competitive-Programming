@@ -18,5 +18,20 @@ using namespace std;
 
 int main()
 {
-	
+	int n, r, x, y, ans=0, curr=1;
+
+	read2(n, r);
+	for(int i=0; i<n; i++)
+	{
+		read2(x, y);
+		while(curr + r <= x)
+			curr += r;
+		while(curr <= y)
+		{
+			ans++;
+			curr++;
+		}
+	}
+
+	printf("%d\n", ans);
 }

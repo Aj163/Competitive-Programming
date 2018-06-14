@@ -18,5 +18,22 @@ using namespace std;
 
 int main()
 {
-	
+	char s[1009];
+	int k, l, m=0, ans=0;
+	int val[26];
+
+	reads(s);
+	read(k);
+	for(int i=0; i<26; i++)
+	{
+		read(val[i]);
+		m = max(m, val[i]);
+	}
+
+	l = strlen(s);
+	for(int i=0; i<l; i++)
+		ans += val[s[i] - 'a'] * (i+1);
+	for(int i=0; i<k; i++)
+		ans += m * (i+l+1);
+	printf("%d\n", ans);
 }

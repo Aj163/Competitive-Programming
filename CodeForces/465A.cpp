@@ -18,5 +18,22 @@ using namespace std;
 
 int main()
 {
-	
+	int n, ans=0, flag=1;
+	char a;
+
+	read(n);
+	getchar();
+	for(int i=0; i<n; i++)
+	{
+		readc(a);
+		if(a=='0' && flag)
+		{
+			ans++;
+			flag = 0;
+		}
+		else if(flag)
+			ans++;
+	}
+
+	printf("%d\n", ans);
 }

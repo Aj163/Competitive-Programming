@@ -18,5 +18,17 @@ using namespace std;
 
 int main()
 {
-	
+	int a, b, c;
+	vi v;
+
+	read3(a, b, c);
+	v.pb(a+b+c);
+	v.pb((a+b)*c);
+	v.pb(a*(b+c));
+	v.pb(a*b*c);
+	v.pb(a*b+c);
+	v.pb(a+b*c);
+
+	sort(v.begin(), v.end());
+	printf("%d\n", v[v.size() -1]);
 }

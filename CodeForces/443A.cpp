@@ -18,5 +18,16 @@ using namespace std;
 
 int main()
 {
-	
+	set<char> s;
+	char a, str[1009];
+
+	cin.getline(str, 1009);
+	for(int i=0; i<strlen(str); i++)
+	{
+		a = str[i];
+		if(a>='a' && a<='z')
+			s.insert(a);
+	}
+
+	printf("%d\n", (int)s.size());
 }

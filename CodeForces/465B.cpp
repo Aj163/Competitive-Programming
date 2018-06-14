@@ -18,5 +18,24 @@ using namespace std;
 
 int main()
 {
-	
+	int n, ans=0;
+	int a[1009];
+
+	read(n);
+	for(int i=1; i<=n; i++)
+		read(a[i]);
+
+	a[n+1] = a[0] = 0;
+	for(int i=1; i<=n; i++)
+	{
+		if(a[i])
+			ans++;
+		if(a[i] && a[i+1]==0)
+			ans++;
+	}
+
+	if(ans)
+		ans--;
+
+	printf("%d\n", ans);
 }
