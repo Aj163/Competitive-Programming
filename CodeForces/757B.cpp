@@ -18,5 +18,28 @@ using namespace std;
 
 int main() {
 
-	
+	int cnt[100009];
+	int n, a;
+
+	memset(cnt, 0, sizeof(cnt));
+	read(n);
+	for(int i=0; i<n; i++) {
+		read(a);
+
+		for(int j=2; j*j<=a; j++)
+			if(a%j == 0) {
+				cnt[j]++;
+				while(a%j == 0)
+					a/=j;
+			}
+
+		if(a != 1)
+			cnt[a]++;
+	}
+
+	int ans = 1;
+	for(int i=0; i<100009; i++)
+		ans = max(ans, cnt[i]);
+
+	printf("%d\n", ans);
 }

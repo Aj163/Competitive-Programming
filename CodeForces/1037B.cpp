@@ -18,5 +18,25 @@ using namespace std;
 
 int main() {
 
-	
+	int n, s;
+	int a[200009];
+
+	read(n);
+	read(s);
+	for(int i=0; i<n; i++)
+		read(a[i]);
+
+	sort(a, a+n);
+	ll ans=0, sum=0;
+
+	if(a[n/2] > s) {
+		for(int i=n/2; i>=0; i--) 
+			ans += max(a[i] - s, 0); 
+	}
+	else {
+		for(int i=n/2; i<n; i++)
+			ans += max(s - a[i], 0);
+	}
+
+	printf("%lld\n", ans);
 }

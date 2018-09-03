@@ -18,5 +18,27 @@ using namespace std;
 
 int main() {
 
-	
+	int n, ans=0;
+	char a[1000009], b[1000009];
+
+	read(n);
+	reads(a);
+	reads(b);
+
+	for(int i=0; i<n-1; i++) {
+		if(a[i] != b[i] && a[i+1] != b[i+1] && a[i] != a[i+1]) {
+			ans++;
+			a[i] = b[i];
+			a[i+1] = b[i+1];
+		}
+		else if(a[i] != b[i]) {
+			ans++;
+			a[i] = b[i];
+		}
+	}
+
+	if(a[n-1] != b[n-1])
+		ans++;
+
+	printf("%d\n", ans);
 }

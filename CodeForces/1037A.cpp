@@ -18,5 +18,15 @@ using namespace std;
 
 int main() {
 
-	
+	int n;
+	cin >> n;
+
+	int cnt = 0;
+	long long p=1;
+	while(p<=n) {
+		p*=2;
+		cnt++;
+	}
+
+	printf("%d\n", cnt);
 }
