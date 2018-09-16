@@ -1,13 +1,13 @@
 #define maxn 1000009
 int fact[maxn];
 
-int power(int a, int n, int m = 1000000007)
+int power(ll a, ll n, int m = 1000000007)
 {
 	if(n==0)
 		return 1;
 	if(n%2)
-		return (a*1ll*power((a*1ll*a)%m, (n-1)/2, m))%m;
-	return power((a*1ll*a)%m, n/2, m);
+		return (a * power((a * a)%m, (n-1)/2, m))%m;
+	return power((a * a)%m, n/2, m);
 }
 
 void facts(int m = 1000000007)
