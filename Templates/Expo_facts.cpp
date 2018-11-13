@@ -1,13 +1,17 @@
 #define maxn 1000009
 int fact[maxn];
 
-int power(ll a, ll n, int m = 1000000007)
-{
-	if(n==0)
-		return 1;
-	if(n%2)
-		return (a * power((a * a)%m, (n-1)/2, m))%m;
-	return power((a * a)%m, n/2, m);
+long long fastPow(long long a, long long n) {
+
+	long long res=1;
+	while(n>0) {
+		if(n%2)
+			res = (res * a) % M;
+		a = (a * a) % M;
+		n /= 2;
+	}
+
+	return res;
 }
 
 void facts(int m = 1000000007)
